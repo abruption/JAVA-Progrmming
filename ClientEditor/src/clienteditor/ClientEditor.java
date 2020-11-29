@@ -1,7 +1,7 @@
 package clienteditor;
 
 public class ClientEditor extends javax.swing.JPanel {
-    private Client client = Client.createTestClient();
+    private Client client = Client.createTestClient();  // 객체 호출
 
     public ClientEditor() {
         initComponents();
@@ -9,277 +9,35 @@ public class ClientEditor extends javax.swing.JPanel {
     }
 
 
-    public Client getClient() {
+    public Client getClient() {     // Getter 설정
         return client;
     }
 
 
-    public void setClient(Client client) {
-        Client oldClient = this.client;
-        this.client = client;
-        firePropertyChange("client", oldClient, client);
+    public void setClient(Client client) {      // Setter 설정
+        Client oldClient = this.client;         // 기 입력값을 oldClient 변수에 저장
+        this.client = client;                   // 매개변수를 통해 전달받은 입력 값을 현재 변수에 저장
+        firePropertyChange("client", oldClient, client);    // client가 바뀌면 firePropertyChange 메소드 호출
     }
 
 
-    private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
-
-        sexButtonGroup = new javax.swing.ButtonGroup();
-        ageConverter = new clienteditor.AgeConverter();
-        ageValidator = new clienteditor.AgeValidator();
-        maritalStatusConverter = new clienteditor.MaritalStatusConverter();
-        requiredStringValidator = new clienteditor.RequiredStringValidator();
-        emailValidator = new clienteditor.EmailValidator();
-        clientInfoPane = new javax.swing.JTabbedPane();
-        personalPanel = new javax.swing.JPanel();
-        firstNameLabel = new javax.swing.JLabel();
-        firstNameTextField = new javax.swing.JTextField();
-        surnameLabel = new javax.swing.JLabel();
-        surnameTextField = new javax.swing.JTextField();
-        maritalComboBox = new javax.swing.JComboBox();
-        sexLabel = new javax.swing.JLabel();
-        maritalStatusLabel = new javax.swing.JLabel();
-        maleRadioButton = new javax.swing.JRadioButton();
-        femaleRadioButton = new javax.swing.JRadioButton();
-        ageLabel = new javax.swing.JLabel();
-        ageTextField = new javax.swing.JTextField();
-        contactPanel = new javax.swing.JPanel();
-        nicknameLabel = new javax.swing.JLabel();
-        emailLabel = new javax.swing.JLabel();
-        webLabel = new javax.swing.JLabel();
-        imLabel = new javax.swing.JLabel();
-        nicknameTextField = new javax.swing.JTextField();
-        emailTextField = new javax.swing.JTextField();
-        webTextField = new javax.swing.JTextField();
-        imTextField = new javax.swing.JTextField();
-        usernameLabel = new javax.swing.JLabel();
-        clientInfoLabel = new javax.swing.JLabel();
-        validationMsgLabel = new javax.swing.JLabel();
-
-        personalPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        firstNameLabel.setText("First Name:"); // NOI18N
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.firstName}"), firstNameTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "firstName"); // NOI18N
-        bindingGroup.addBinding(binding);
-
-        surnameLabel.setText("Surname:"); // NOI18N
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.surname}"), surnameTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "surname"); // NOI18N
-        binding.setValidator(requiredStringValidator);
-        bindingGroup.addBinding(binding);
-
-        maritalComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Single", "Married", "Separated", "Divorced" }));
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.maritalStatus}"), maritalComboBox, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"), "maritalStatus"); // NOI18N
-        binding.setConverter(maritalStatusConverter);
-        bindingGroup.addBinding(binding);
-
-        sexLabel.setText("Sex:"); // NOI18N
-
-        maritalStatusLabel.setText("Marital status:"); // NOI18N
-
-        sexButtonGroup.add(maleRadioButton);
-        maleRadioButton.setText("male"); // NOI18N
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.sex}"), maleRadioButton, org.jdesktop.beansbinding.BeanProperty.create("selected"), "sex"); // NOI18N
-        bindingGroup.addBinding(binding);
-
-        sexButtonGroup.add(femaleRadioButton);
-        femaleRadioButton.setText("female"); // NOI18N
-
-        ageLabel.setText("Age:"); // NOI18N
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.age}"), ageTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "age");
-        binding.setConverter(ageConverter);
-        binding.setValidator(ageValidator);
-        bindingGroup.addBinding(binding);
-
-        org.jdesktop.layout.GroupLayout personalPanelLayout = new org.jdesktop.layout.GroupLayout(personalPanel);
-        personalPanel.setLayout(personalPanelLayout);
-        personalPanelLayout.setHorizontalGroup(
-            personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(personalPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(sexLabel)
-                    .add(personalPanelLayout.createSequentialGroup()
-                        .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(firstNameLabel)
-                            .add(surnameLabel)
-                            .add(maritalStatusLabel)
-                            .add(ageLabel))
-                        .add(7, 7, 7)
-                        .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(personalPanelLayout.createSequentialGroup()
-                                .add(maleRadioButton)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(femaleRadioButton))
-                            .add(firstNameTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .add(surnameTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, ageTextField)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, maritalComboBox, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap())
-        );
-        personalPanelLayout.setVerticalGroup(
-            personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(personalPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(firstNameLabel)
-                    .add(firstNameTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(surnameLabel)
-                    .add(surnameTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(maritalStatusLabel)
-                    .add(maritalComboBox, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(ageLabel)
-                    .add(ageTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(personalPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(sexLabel)
-                    .add(femaleRadioButton)
-                    .add(maleRadioButton))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        clientInfoPane.addTab("Personal", personalPanel);
-
-        contactPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        nicknameLabel.setText("Nickname:"); // NOI18N
-
-        emailLabel.setText("E-mail:"); // NOI18N
-
-        webLabel.setText("Web:"); // NOI18N
-
-        imLabel.setText("IM:"); // NOI18N
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.nickname}"), nicknameTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "nickname"); // NOI18N
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.email}"), emailTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "email");
-        binding.setValidator(emailValidator);
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.web}"), webTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "web");
-        bindingGroup.addBinding(binding);
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.im}"), imTextField, org.jdesktop.beansbinding.BeanProperty.create("text"), "im");
-        bindingGroup.addBinding(binding);
-
-        org.jdesktop.layout.GroupLayout contactPanelLayout = new org.jdesktop.layout.GroupLayout(contactPanel);
-        contactPanel.setLayout(contactPanelLayout);
-        contactPanelLayout.setHorizontalGroup(
-            contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(contactPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(nicknameLabel)
-                    .add(emailLabel)
-                    .add(webLabel)
-                    .add(imLabel))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(nicknameTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                    .add(emailTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                    .add(webTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                    .add(imTextField, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        contactPanelLayout.setVerticalGroup(
-            contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(contactPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(nicknameLabel)
-                    .add(nicknameTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(emailLabel)
-                    .add(emailTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(webLabel)
-                    .add(webTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(contactPanelLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(imLabel)
-                    .add(imTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
-        );
-
-        clientInfoPane.addTab("Contact", contactPanel);
-
-        usernameLabel.setFont(new java.awt.Font("Dialog", 1, 24));
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${client.firstName} ${client.surname}"), usernameLabel, org.jdesktop.beansbinding.BeanProperty.create("text"), "displayNameTitle");
-        bindingGroup.addBinding(binding);
-
-        clientInfoLabel.setFont(new java.awt.Font("Dialog", 0, 24));
-        clientInfoLabel.setText("Client Info:"); // NOI18N
-
-        validationMsgLabel.setFont(new java.awt.Font("Dialog", 1, 11));
-        validationMsgLabel.setForeground(new java.awt.Color(255, 0, 0));
-
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, clientInfoPane, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(clientInfoLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(usernameLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, validationMsgLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(clientInfoLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(usernameLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(clientInfoPane)
-                .add(5, 5, 5)
-                .add(validationMsgLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        bindingGroup.bind();
-    }// </editor-fold>//GEN-END:initComponents
-    
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
 
         try {
-            javax.swing.UIManager.LookAndFeelInfo[] installedLookAndFeels=javax.swing.UIManager.getInstalledLookAndFeels();
-            for (int idx=0; idx<installedLookAndFeels.length; idx++)
+            javax.swing.UIManager.LookAndFeelInfo[] installedLookAndFeels=javax.swing.UIManager.getInstalledLookAndFeels();     // SDK로 인스톨이 끝난 LookAndFeel 구현에 관한 정보를 포함하는 객체를 리턴하여 배열에 저장시킨다.
+            for (int idx=0; idx<installedLookAndFeels.length; idx++)        // 배열의 길이만큼 반복문을 수행한다.
                 if ("Nimbus".equals(installedLookAndFeels[idx].getName())) {
-                    javax.swing.UIManager.setLookAndFeel(installedLookAndFeels[idx].getClassName());
+                    javax.swing.UIManager.setLookAndFeel(installedLookAndFeels[idx].getClassName());    // 객체의 이름 중 Nimbus와 동일한 건이 있을 경우 해당 이름으로 LookAndFeel을 설정한다.
                     break;
                 }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {   // 만약 해당 클래스가 존재하지 않을 경우 Exception을 발생시킨다.
+            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);     // 해당 클래스의 로그 값을 가져온다.
+        } catch (InstantiationException ex) {   // 지정된 객체에 인스턴스를 생성할 수 없는 경우 해당 Exception을 발생시킨다.
+            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);     // 해당 클래스의 로그 값을 가져온다.
+        } catch (IllegalAccessException ex) {   // 접근할 수 없는 필드나 메소드에 접근하는 경우 해당 Exception을 발생시킨다.
+            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);     // 해당 클래스의 로그 값을 가져온다.
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {  // 지원하는 LookAndFeel이 아닌 경우 해당 Exception을 발생시킨다.
+            java.util.logging.Logger.getLogger(ClientEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);     // 해당 클래스의 로그 값을 가져온다.
         }
         //</editor-fold>
 
