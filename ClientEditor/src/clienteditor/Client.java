@@ -28,7 +28,7 @@ public class Client {
         changeSupport.removePropertyChangeListener(listener);
     }    
 
-    // Getter, Setter 설정
+    // Getter 설정
     public String getFirstName() {  
         return firstName;
     }
@@ -64,8 +64,9 @@ public class Client {
     public int getMaritalStatus() {
         return maritalStatus;
     }
-    // Getter, Setter 설정 완료
+    // Getter 설정 완료
 
+    // Setter 설정
     public void setfireName(String firstName) {                                
         String oldFirstName = this.firstName;                                   // 현재 입력 값을 oldFirstName 변수에 저장
         this.firstName = firstName;                                             // 입력된 firstName을 현재 firstName에 저장
@@ -119,7 +120,7 @@ public class Client {
         this.maritalStatus = maritalStatus;                                                     // 입력된 maritalStatus를 현재 maritalStatus에 저장
         changeSupport.firePropertyChange("maritalStatus", oldMaritalStatus, maritalStatus);     // maritalStatus이 바뀌면 fireProperyChange 메소드를 호출한다.
     }
-
+    // Setter 설정 완료
     
     public static Client createTestClient() {
         Client client = new Client();                       // 객체 생성
